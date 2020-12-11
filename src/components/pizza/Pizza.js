@@ -1,25 +1,26 @@
 import React, { Component } from "react";
 import "./Pizza.css";
 import CustomChatbot from "../chatbot/CustomChatbot";
+import Enroll from "../enroll/Enroll";
+
 import Button from "@material-ui/core/Button";
 
 class Pizza extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showGoogleDialogFlow: false,
-      showCustomDialogFlow: false,
+       chatbox: "",
     };
   }
 
   render() {
     return (
       <div>
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center", margin:"10px" }}>
           <Button
             variant="contained"
             color="primary"
-            onClick={() => this.setState({ showGoogleDialogFlow: true })}
+            onClick={() => this.setState({ chatbox: "google" })}
           >
             Google dialogflow
           </Button>
@@ -27,12 +28,20 @@ class Pizza extends Component {
             style={{ marginLeft: 30 }}
             variant="contained"
             color="primary"
-            onClick={() => this.setState({ showCustomDialogFlow: true })}
+            onClick={() => this.setState({ chatbox: "react" })}
           >
             Custom ChatBot
           </Button>
+           <Button
+            style={{ marginLeft: 30 }}
+            variant="contained"
+            color="primary"
+            onClick={() => this.setState({ chatbox: "form" })}
+          >
+            Registeration Form
+          </Button>
         </div>
-        {this.state.showGoogleDialogFlow ? (
+        {this.state.chatbox =="google" ? (
           <iframe
             allow="microphone;"
             width="350"
@@ -41,7 +50,8 @@ class Pizza extends Component {
           ></iframe>
         ) : null}
 
-        {this.state.showCustomDialogFlow ? <CustomChatbot /> : null}
+        {this.state.chatbox =="react"  ? <CustomChatbot /> : null}
+        {this.state.chatbox =="form"  ? <Enroll /> : null}
       </div>
     );
   }

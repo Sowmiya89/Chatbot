@@ -1,0 +1,56 @@
+
+body {
+    font-family: at_Roboto-Light,sans-serif;
+    height: 100%;
+    width: 100%;
+    background-color: #f0f1f5;
+    background-image: url("./background-sso3.jpg");
+    background-repeat: no-repeat;
+}
+
+form {
+    margin: 5rem auto 0;
+    width: 24rem;
+}
+h3 {
+    display: block;
+    font-family: at_Roboto-Light,sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    color: floralwhite;
+    width: 100%;
+    margin: 2rem auto;
+}
+div {
+    width: inherit;
+    margin-bottom: 1.5rem;
+}
+
+input {
+    padding: 0 0.5rem;
+    width: inherit;
+    height: 2rem;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    margin-bottom: 0.75rem;
+    background: #faa627;
+    cursor: pointer;
+}
+
+input[type="reset"] {
+    background: #ccc;
+    cursor: pointer;
+}
+
+p {
+    margin-top: 0.5rem;
+    color: orangered;
+}
+
+
+
