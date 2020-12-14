@@ -1,6 +1,7 @@
 import ChatBots from 'react-simple-chatbot';
 import React, {useState,Component } from 'react';
 import { ThemeProvider } from 'styled-components';
+import axios from 'axios';
 const theme = {
   background: '#f5f8fb',
   fontFamily: 'Helvetica Neue',
@@ -12,6 +13,7 @@ const theme = {
   userBubbleColor: '#fff',
   userFontColor: '#4a4a4a',
 };
+
 class ChatBot extends Component {
   constructor(props) {
     super(props);
@@ -21,6 +23,28 @@ class ChatBot extends Component {
       report: []
   }
   }
+  componentDidMount() {
+    this.handleEnd = this.handleEnd.bind(this);
+  }
+
+  handleEnd({ steps, values }) {
+     console.log(steps);
+    console.log(values);
+    console.log(values[0]);
+    const data = {
+      data: this.state.report
+    };
+   // alert(`Chat handleEnd callback! Number: ${values[0]}`);
+   this.setState({name:values[0]});
+   //const article = { title: 'React POST Request Example' };
+   axios.post('http://localhost:5000/api/send_mail', data)
+      // .then(response => this.setState({ articleId: response.data.id }));
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
+  }
+  
  
 
   
@@ -42,6 +66,10 @@ const updatestate =(idno,qsval,ansval)=>{
 this.setState({
   report: [ ...this.state.report, ...infoArray ]
 })
+}
+const validateresponse=()=>{
+  if((this.state.yescount)<7){return "Done";}
+  else return "interviewdate";
 }
 const updateyes=()=>{
 this.setState({yescount: this.state.yescount+1});
@@ -68,7 +96,8 @@ this.setState({yescount: this.state.yescount+1});
     trigger: () => {
       this.setState({ name: "{previousValue}" })
       updatestate(1,"name",this.state.name);
-     return "Displaying options to eat"  
+    // return "Displaying options to eat" 
+    return "Displaying options to eat"  
    }
    // trigger: "Displaying options to eat"
  },
@@ -414,7 +443,7 @@ this.setState({yescount: this.state.yescount+1});
                  trigger: () => {
                   updatestate(13,"Experience in microservices","yes");
                   updateyes();
-                 return "Done"
+                  return validateresponse();
                  }
                  
                },
@@ -423,37 +452,44 @@ this.setState({yescount: this.state.yescount+1});
                  label: "No",
                  trigger: () => {
                   updatestate(13,"Experience in microservices","no");
-                 return "Done"
+                  return validateresponse();
                  }
               }
              ]
  },
+ 
 {
-    id: "reactproficiency",
-    message: "How many years of experience do you have in Javascript",
-    trigger: "reacttype"
+    id: "interviewdate",
+    message: "What is your preferred interview date?",
+    trigger: "dates"
  },
  {
-    id: "reacttype",
+    id: "dates",
     options: [
                {
-                 value: 'beginner',
-                 label: ">5 Years",
+                 value: '15dec',
+                 label: "15 Dec 2020",
                   trigger: () => {
-                   clickEventHandler("beginner");
+                    updatestate(14,"Interview date","15dec");
                    return "Done"  
                   }
                },
-               { 
-                 value: "intermediate",
-                 label: "<5 Years",
-                 trigger: "Done"
-               },
-               { 
-                 value: "expert",
-                 label: "<10 years",
-                 trigger: "Done"
-               }
+               {
+                value: '16dec',
+                label: "16 Dec 2020",
+                 trigger: () => {
+                   updatestate(14,"Interview date","16dec");
+                  return "Done"  
+                 }
+              },
+              {
+                value: '17dec',
+                label: "17 Dec 2020",
+                 trigger: () => {
+                   updatestate(14,"Interview date","17dec");
+                  return "Done"  
+                 }
+              }
              ]
  },
   {
@@ -475,7 +511,9 @@ this.setState({yescount: this.state.yescount+1});
         <>
            <div className="chatbox">
                 <ThemeProvider theme={theme}>
-                <ChatBots  headerTitle="Atos Syntel PDAC CHATBOT"
+                <ChatBots  
+                handleEnd={this.handleEnd}
+                headerTitle="Atos Syntel PDAC CHATBOT"
                 speechSynthesis={{ enable: true, lang: 'en' }}
                 eventHandler={clickEventHandler} 
                 recognitionEnable={true} steps={steps}/></ThemeProvider>
