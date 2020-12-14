@@ -14,6 +14,15 @@ const theme = {
   userFontColor: '#4a4a4a',
 };
 
+const sendEmail = (email, userName = "Atos Syntel HR Team") => {
+  console.log('sendEmail', email)
+  return fetch("/api/send_email", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, userName })
+  }).then(response => response.json());
+};
+
 class ChatBot extends Component {
   constructor(props) {
     super(props);
@@ -31,18 +40,25 @@ class ChatBot extends Component {
      console.log(steps);
     console.log(values);
     console.log(values[0]);
-    const data = {
-      data: this.state.report
-    };
+    
    // alert(`Chat handleEnd callback! Number: ${values[0]}`);
-   this.setState({name:values[0]});
+  //  this.setState({name:values[0]});
+   this.setState({
+    report: [ ...this.state.report, [{name:values[0]}] ]
+  }, sendEmail(this.state.report));
+  // const data = {
+  //   data: this.state.report
+  // };
+  //  sendEmail(data).then(({ message }) => {
+  //   alert(message);
+  // });
    //const article = { title: 'React POST Request Example' };
-   axios.post('http://localhost:5000/api/send_mail', data)
-      // .then(response => this.setState({ articleId: response.data.id }));
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
+  //  axios.post('http://localhost:3000/api/send_mail', data)
+  //     // .then(response => this.setState({ articleId: response.data.id }));
+  //     .then(res => {
+  //       console.log(res);
+  //       console.log(res.data);
+  //     })
   }
   
  
