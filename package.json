@@ -11,6 +11,7 @@
     "email-templates": "^8.0.2",
     "emailjs-com": "^2.6.4",
     "express": "^4.17.1",
+    "jsdom-global": "^3.0.2",
     "node-mailjet": "^3.3.1",
     "nodemailer": "^6.4.17",
     "react": "^16.9.0",

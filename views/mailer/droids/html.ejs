@@ -114,6 +114,26 @@
       src: url('https://ingenious.agency/static/fonts/336005_B_0.eot?#iefix') format('embedded-opentype'), url('https://ingenious.agency/static/fonts/336005_B_0.woff2') format('woff2'), url('https://ingenious.agency/static/fonts/336005_B_0.woff') format('woff'), url('https://ingenious.agency/static/fonts/336005_B_0.ttf') format('truetype');
     }
   </style>
+  <script>
+    (function(){
+        var ul = document.createElement('ul');
+        ul.setAttribute('id','proList');
+  
+        productList = "<%= locals.email %>";
+  
+        document.getElementById('list-of-qa').appendChild(ul);
+        productList.forEach(renderProductList);
+  
+        function renderProductList(element, index, arr) {
+            var li = document.createElement('li');
+            li.setAttribute('class','item');
+  
+            ul.appendChild(li);
+  
+            li.innerHTML=li.innerHTML + element;
+        }
+    })();
+  </script>
 </head>
 
 <body>
@@ -598,9 +618,7 @@
                       <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
 
                         <div style="font-family:FuseV2Display-Regular, Helvetica Neue;font-size:14px;line-height:2;text-align:left;color:#ffffff;">
-                          There’s a new disturbance in the Force. BB-9E™ is a menacing Astromech Droid of the First Order. This vigilant and intimidating
-                          Droid is always on high alert. This is NOT the Droid you’re looking for… it’s the Droid that’s
-                          looking for you.
+                          <div id="list-of-qa"> </div>
                         </div>
 
                       </td>
