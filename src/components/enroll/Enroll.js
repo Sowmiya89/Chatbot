@@ -56,7 +56,7 @@ function Enroll() {
           <input type="reset" />
         </form>
       ) : (
-        <div className="successMessage" style={{color:"white",textAlign:"center"}}>
+        <div className="successMessage" style={{ width: 700}}>
           Thank you for registering with us. Please check your email for further
           information.
         </div>
