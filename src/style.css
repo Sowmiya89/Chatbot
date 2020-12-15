@@ -9,8 +9,11 @@
 }
 
 .container form {
-    margin: 5rem auto 0;
     width: 24rem;
+    float: right;
+    margin-right: 230px;
+    margin-top: 5rem;
+   
 }
 .container h3 {
     display: block;
@@ -50,6 +53,12 @@
 .container p {
     margin-top: 0.5rem;
     color: orangered;
+}
+.successMessage{
+    width: 10rem;
+    float: right;
+    margin-right: 30px;
+    margin-top: 15rem;
 }
 
 

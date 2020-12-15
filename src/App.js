@@ -1,10 +1,9 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import Pizza from "./components/pizza/Pizza";
+import Home from "./components/home/Home";
 
 function App() {
-  return <Pizza />;
+  return <Home />;
 }
 
 export default App;
