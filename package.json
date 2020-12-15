@@ -17,6 +17,7 @@
     "react": "^16.9.0",
     "react-cool-form": "0.0.71",
     "react-dom": "^16.9.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.1.1",
     "react-simple-chatbot": "^0.6.1",
     "styled-components": "^5.2.1"

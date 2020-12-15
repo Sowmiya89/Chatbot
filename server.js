@@ -31,7 +31,7 @@ app.post("/api/send_email", function(req, res) {
   };
   const messageInfo = {
     email: req.body.email, fromEmail: "manikandan.atossyntel@gmail.com",
-    toEmail: 'manikandan.atossyntel@gmail.com',
+    toEmail: 'anettevilma@gmail.com',
     toName: 'Atos Syntel HR Team',
     fromName: "ChatBot Team", subject: "Candidate details for L0 Interview Process"
   };

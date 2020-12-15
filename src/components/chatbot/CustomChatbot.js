@@ -91,18 +91,18 @@ this.setState({yescount: this.state.yescount+1});
     message: "Hello, Welcome to atos syntel",
     trigger: "Ask Name"
  },
+//  {
+//     id: "Ask Name",
+//     message: "Please type your name?",
+//     trigger: "Waiting user input for name"
+//  },
+//  {
+//     id: "Waiting user input for name",
+//     user: true,
+//     trigger: "Asking options to eat"
+//  },
  {
     id: "Ask Name",
-    message: "Please type your name?",
-    trigger: "Waiting user input for name"
- },
- {
-    id: "Waiting user input for name",
-    user: true,
-    trigger: "Asking options to eat"
- },
- {
-    id: "Asking options to eat",
     message: "Hi {previousValue}, Please select your skill set",
     trigger: () => {
       this.setState({ name: "{previousValue}" })
