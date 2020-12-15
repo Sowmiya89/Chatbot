@@ -1,5 +1,5 @@
 
-body {
+.container {
     font-family: at_Roboto-Light,sans-serif;
     height: 100%;
     width: 100%;
@@ -8,11 +8,11 @@ body {
     background-repeat: no-repeat;
 }
 
-form {
+.container form {
     margin: 5rem auto 0;
     width: 24rem;
 }
-h3 {
+.container h3 {
     display: block;
     font-family: at_Roboto-Light,sans-serif;
     font-size: 20px;
@@ -22,12 +22,12 @@ h3 {
     width: 100%;
     margin: 2rem auto;
 }
-div {
+.container div {
     width: inherit;
     margin-bottom: 1.5rem;
 }
 
-input {
+.container input {
     padding: 0 0.5rem;
     width: inherit;
     height: 2rem;
@@ -36,18 +36,18 @@ input {
     box-sizing: border-box;
 }
 
-input[type="submit"] {
+.container input[type="submit"] {
     margin-bottom: 0.75rem;
     background: #faa627;
     cursor: pointer;
 }
 
-input[type="reset"] {
+.container input[type="reset"] {
     background: #ccc;
     cursor: pointer;
 }
 
-p {
+.container p {
     margin-top: 0.5rem;
     color: orangered;
 }

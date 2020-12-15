@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import { useForm } from "react-cool-form";
-//import "../../style.css";
+import "../../style.css";
 
 function Enroll() {
     const { form, getState } = useForm({
@@ -12,7 +12,7 @@ function Enroll() {
     const errors = getState("errors");
 
     return (
-
+    <div class="container">
         <form ref={form} noValidate>
             <h3>
                 <span className="formName"></span>Candidate Info
@@ -42,7 +42,7 @@ function Enroll() {
             <input type="submit" />
             <input type="reset" />
         </form>
-
+    </div>
     );
 }
 
