@@ -20,7 +20,20 @@ function Enroll(props) {
 
 },
         
+
   });
+
+  const sendChatBotlink = (email, userName = "Atos Syntel HR Team") =>{
+  
+        console.log('sendEmail', email)
+        return fetch("/api/send_email", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, link:"https://3000/chatbot"+ "/"+userName })
+        }).then(response => response.json());
+
+  }
+
   const errors = getState("errors");
   return (
     <div class="container" style={{ height: 640 }}>
@@ -54,7 +67,7 @@ function Enroll(props) {
           <input type="reset" />
         </form>
       ) : (
-        <div className="successMessage" style={{color:"white",textAlign:"center"}}>
+        <div className="successMessage" style={{ width: 700}}>
           Thank you for registering with us. Please check your email for further
           information.
         </div>
