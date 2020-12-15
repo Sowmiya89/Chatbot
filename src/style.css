@@ -55,10 +55,13 @@
     color: orangered;
 }
 .successMessage{
-    width: 10rem;
     float: right;
-    margin-right: 30px;
+    margin-right: 450px;
     margin-top: 15rem;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    text-align: center;
 }
 
 
