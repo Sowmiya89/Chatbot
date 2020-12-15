@@ -523,6 +523,7 @@ this.setState({yescount: this.state.yescount+1});
            <div className="chatbox">
                 <ThemeProvider theme={theme}>
                 <ChatBots  
+                width="100%"
                 handleEnd={this.handleEnd}
                 headerTitle="Atos Syntel PDAC CHATBOT"
                 speechSynthesis={{ enable: true, lang: 'en' }}
