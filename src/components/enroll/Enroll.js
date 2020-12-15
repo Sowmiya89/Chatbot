@@ -3,17 +3,27 @@ import { useForm } from "react-cool-form";
 import { useState } from "react";
 import "../../style.css";
 
-function Enroll() {
+function Enroll(props) {
+
     const [showMessage, setShowMessage] = useState(true);
    
 
   const { form, getState } = useForm({
     defaultValues: { name: "", email: "", password: "" },
-    onSubmit: (values) => setShowMessage(false),
+    onSubmit: (values) =>{ 
+                 setShowMessage(false)
+                 fetch("http://localhost:3000/api/send_registration_email", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ values })
+                          }).then(response => response.json());
+
+},
+        
   });
   const errors = getState("errors");
   return (
-    <div class="container" style={{ width: 1500, height: 640 }}>
+    <div class="container" style={{ height: 640 }}>
       {showMessage ? (
         <form ref={form} noValidate>
           <h3>

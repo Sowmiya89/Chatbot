@@ -1,11 +1,18 @@
 
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
 .container {
     font-family: at_Roboto-Light,sans-serif;
-    height: 100%;
+    min-height: 100%;
     width: 100%;
     background-color: #f0f1f5;
     background-image: url("./background-sso3.jpg");
     background-repeat: no-repeat;
+    float:left;
 }
 
 .container form {

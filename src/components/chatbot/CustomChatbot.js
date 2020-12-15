@@ -2,6 +2,7 @@ import ChatBots from 'react-simple-chatbot';
 import React, {useState,Component } from 'react';
 import { ThemeProvider } from 'styled-components';
 import axios from 'axios';
+import * as qs from 'query-string';
 const theme = {
   background: '#f5f8fb',
   fontFamily: 'Helvetica Neue',
@@ -32,6 +33,8 @@ class ChatBot extends Component {
       yescount:0,
       report: []
   }
+     
+
   }
   componentDidMount() {
     this.handleEnd = this.handleEnd.bind(this);
@@ -39,7 +42,7 @@ class ChatBot extends Component {
 
     configureEMail(){
 
-    console.log("report",this.state.report);
+
         const data = {
           data: this.state.report
        };
@@ -50,8 +53,13 @@ class ChatBot extends Component {
 
  
   handleEnd({ steps, values }) {
+
+       const query = qs.parse(this.props.location.search);
+      const userrole=query['name'];
+      const useremail=query['email'];
+      const phoneno=query['phoneno'];
      this.setState({
-      report: [ ...this.state.report, {name:values[0]}]
+      report: [ ...this.state.report, {name:userrole,email:useremail,phnumber:phoneno}]
     }, () => {this.configureEMail()});
   }
   
@@ -62,6 +70,10 @@ class ChatBot extends Component {
 
 //export default function ChatBot(props)
 render() {
+   const query = qs.parse(this.props.location.search);
+      const userrole=query['name'];
+      const useremail=query['email'];
+      const phoneno=query['phoneno'];
    // let [isHidden, toggleDisplay] = useState(true);
    
   const clickEventHandler = usertype => {
@@ -88,7 +100,7 @@ this.setState({yescount: this.state.yescount+1});
  const steps = [
   {
     id: "Greet",
-    message: "Hello, Welcome to atos syntel",
+    message: `Hello ${userrole}, Welcome to atos syntel`,
     trigger: "Ask Name"
  },
 //  {

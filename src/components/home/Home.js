@@ -9,9 +9,9 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
+      <>
        <Enroll/>
-      </div>
+      </>
     );
   }
 }
