@@ -31,12 +31,43 @@ app.post("/api/send_email", function(req, res) {
   };
   const messageInfo = {
     email: req.body.email, fromEmail: "manikandan.atossyntel@gmail.com",
-    toEmail: 'kalaivani9963@gmail.com',
+    toEmail: 'manikandan.atossyntel@gmail.com',
     toName: 'Atos Syntel HR Team',
     fromName: "ChatBot Team", subject: "Candidate details for L0 Interview Process"
   };
   mailer.sendOne("droids", messageInfo, locals);
 
+  res.send('{"message":"Email sent."}');
+});
+
+app.post("/api/send_registration_email", function(req, res) {
+  res.set("Content-Type", "application/json");
+  // let name = req.query.page;
+  // let email = req.query.limit;
+  // let phone_number = req.query.limit;
+  const locals = { 
+    userName: req.body.values.name, 
+    email: req.body.values.email,
+    password: req.body.values.password,
+    phone_number: req.body.values.contactno,
+    link: '',
+    whatsAppLink: ''
+  };
+  const messageInfoToCandidate = {
+    email: req.body.email, fromEmail: "manikandan.atossyntel@gmail.com",
+    toEmail: locals.email,
+    toName: locals.name,
+    fromName: "Atos Syntel HR Team", subject: "Thanks for your Registration with Atos Syntel"
+  };
+  mailer.sendRegistrationEmail("droids", messageInfoToCandidate, locals, true);
+  const messageInfoToHr = {
+    email: req.body.email, fromEmail: "manikandan.atossyntel@gmail.com",
+    toEmail: 'manikandan.atossyntel@gmail.com',
+    toName: 'Atos Syntel HR Team',
+    fromName: "New candidate registered", subject: "Candidate details for L0 Interview Process"
+  };
+  mailer.sendRegistrationEmail("droids", messageInfoToHr, locals, false);
+  
   res.send('{"message":"Email sent."}');
 });
 

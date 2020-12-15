@@ -39,7 +39,7 @@ const sendEmail = (messageInfo, text, html) => {
     Messages: [
       {
         From: { Email: messageInfo.fromEmail, Name: messageInfo.fromName },
-        To: [ { Email: messageInfo.toEmail } ],
+        To: [ { Email: messageInfo.toEmail, Name: messageInfo.toName } ],
         Subject: messageInfo.subject,
         TextPart: text,
         HTMLPart: html
@@ -49,14 +49,46 @@ const sendEmail = (messageInfo, text, html) => {
   
 };
 
+exports.sendRegistrationEmail = function(templateName, messageInfo, locals, isCandidateEmail) {
+  const email = new Email({
+   views: { root: templatesDir, options: { extension: "ejs" } }
+ });
+
+ if(isCandidateEmail){
+   locals.link = 'http://localhost:3000/chatbot?name='+locals.userName+'&email='+locals.email+'&phoneno='+locals.phone_number;
+  return Promise.all([
+    email.render(`${templateName}/text`, locals)
+  ])
+    .then(([html, text]) => {
+      return sendEmail(messageInfo, text, html);
+    })
+    .catch(console.error);
+ } else {
+  locals.link = 'http://localhost:3000/chatbot?name='+locals.userName+'&email='+locals.email+'&phoneno='+locals.phone_number;
+  var text = `http://localhost:3000/chatbot?name='+locals.userName+'&email='+locals.email+'&phoneno='+locals.phone_number`;
+  locals.whatsAppLink = "https://api.whatsapp.com/send?phone=+91"+locals.phone_number+"&text= HI "+text;
+  locals.userName = "Atos Syntel HR Team";
+  
+  return Promise.all([
+    email.render(`${templateName}/hrtemplate`, locals)
+  ])
+    .then(([html, text]) => {
+      return sendEmail(messageInfo, text, html);
+    })
+    .catch(console.error);
+ }
+
+ 
+};
+
 exports.sendOne = function(templateName, messageInfo, locals) {
    const email = new Email({
     views: { root: templatesDir, options: { extension: "ejs" } }
   });
 
   return Promise.all([
-    email.render(`${templateName}/html`, locals),
-    email.render(`${templateName}/text`, locals)
+    email.render(`${templateName}/html`, locals)
+    // email.render(`${templateName}/text`, locals)
   ])
     .then(([html, text]) => {
       // Add the contents of options[0] to #foo:
